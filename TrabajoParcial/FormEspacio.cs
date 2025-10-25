@@ -16,12 +16,12 @@ namespace TrabajoParcial
     {
         ArrendadorService arrendadorService = new ArrendadorService();
         EspacioService espacioService = new EspacioService();
-        private Usuario usuario_registro = new Usuario();
+        private Usuario usuario_registro;
         internal FormEspacio(Usuario usuario)
         {
             InitializeComponent();
             usuario_registro = usuario;
-            MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario.DNI));
+            MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario_registro.DNI));
         }
         private void MostrarAlmacenes(List<Espacio> espacio)
         {
@@ -54,7 +54,13 @@ namespace TrabajoParcial
                     espacio.Ubicacion = Ubicacion;
                     espacio.DniArrendador = usuario_registro.DNI;
                 }
-                espacioService.Registro(usuario_registro.DNI, espacio);
+                espacioService.Registro(espacio.DniArrendador, espacio);
+                MessageBox.Show("El espacio ha sido registrado.",
+                                "Registro",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario_registro.DNI));
+                return;
             }
             catch(FormatException)
             {
@@ -65,7 +71,6 @@ namespace TrabajoParcial
                 return;
             }
         }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

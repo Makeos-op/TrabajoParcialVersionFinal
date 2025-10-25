@@ -18,6 +18,7 @@ namespace TrabajoParcial.Entities
             Telefono = persona.Telefono;
             Correo = persona.Correo;
             Contraseña = persona.Contraseña;
+            TipoUsuario = persona.TipoUsuario;
             vehiculos = new List<Vehiculo>();
             brevetes = new List<Brevete>();
         }

@@ -14,16 +14,13 @@ namespace TrabajoParcial
 {
     public partial class FormBrevete : Form
     {
-        UsuarioService usuarioService = new UsuarioService();
-        ConductorService conductorService = new ConductorService();
-        BreveteService breveteService = new BreveteService();
+        private BreveteService breveteService = new BreveteService();
         Usuario usuario1;
         internal FormBrevete(Usuario usuario)
         {
             InitializeComponent();
             usuario1 = usuario;
         }
-
         private void btnregistrarbrevete_Click(object sender, EventArgs e)
         {
             // --- Obtener valores de los TextBox ---
@@ -99,13 +96,13 @@ namespace TrabajoParcial
                 brevete.FechaCaducidad = fechaCaducidad;
                 brevete.FechaEmisional = fechaEmision;
             }
-            if (breveteService.Registro(brevete))
+            bool registro = breveteService.Registro(brevete);
+            if (registro)
             {
                 MessageBox.Show("Brevet registrado correctamente ",
                             "Registro exitoso",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-                this.Close();
                 return;
             }
             MessageBox.Show("El brevete ya ha sido registrado.",
@@ -113,6 +110,10 @@ namespace TrabajoParcial
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

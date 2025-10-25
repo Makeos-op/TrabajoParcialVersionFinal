@@ -14,13 +14,12 @@ namespace TrabajoParcial
 {
     public partial class FormConductor : Form
     {
-        ConductorService conductorService;
+        ConductorService conductorService = new ConductorService();
         Usuario usuario1;
-        internal FormConductor(Usuario usuario, ConductorService Service)
+        internal FormConductor(Usuario usuario)
         {
             InitializeComponent();
             usuario1 = usuario;
-            conductorService = Service;
             MostrarAlmacenes(conductorService.MostrarVehiculos(usuario1.DNI));
         }
         private void MostrarAlmacenes(List<Vehiculo> conductores)
@@ -35,7 +34,7 @@ namespace TrabajoParcial
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormVehiculo form = new FormVehiculo();
+            FormVehiculo form = new FormVehiculo(usuario1);
             form.Show();
             form.FormClosed += (s, args) =>
             {
@@ -60,6 +59,11 @@ namespace TrabajoParcial
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Form loginForm = Application.OpenForms.OfType<FormLogin>().FirstOrDefault();
+            if (loginForm != null)
+            {
+                loginForm.Show();
+            }
             this.Close();
         }
     }

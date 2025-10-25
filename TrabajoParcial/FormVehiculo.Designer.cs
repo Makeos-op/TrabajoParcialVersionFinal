@@ -38,6 +38,8 @@
             this.tbMarca = new System.Windows.Forms.TextBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.Licencia = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -106,29 +108,58 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(56, 183);
+            this.btnRegistrar.Location = new System.Drawing.Point(56, 217);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 33);
-            this.btnRegistrar.TabIndex = 8;
+            this.btnRegistrar.TabIndex = 9;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(177, 183);
+            this.btnSalir.Location = new System.Drawing.Point(177, 217);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 33);
-            this.btnSalir.TabIndex = 9;
+            this.btnSalir.TabIndex = 10;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // Licencia
+            // 
+            this.Licencia.AutoSize = true;
+            this.Licencia.Location = new System.Drawing.Point(53, 167);
+            this.Licencia.Name = "Licencia";
+            this.Licencia.Size = new System.Drawing.Size(57, 16);
+            this.Licencia.TabIndex = 10;
+            this.Licencia.Text = "Licencia";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "A-I",
+            "A-IIa",
+            "A-IIIa",
+            "A-IIb",
+            "A-IIIb",
+            "B-I",
+            "B-IIa",
+            "B-IIb",
+            "B-IIc"});
+            this.comboBox1.Location = new System.Drawing.Point(135, 167);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(117, 24);
+            this.comboBox1.TabIndex = 11;
             // 
             // FormVehiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 247);
+            this.ClientSize = new System.Drawing.Size(304, 304);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.Licencia);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.tbColor);
@@ -141,7 +172,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormVehiculo";
             this.Text = "FormVehiculo";
-            this.Load += new System.EventHandler(this.FormVehiculo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,5 +189,7 @@
         private System.Windows.Forms.TextBox tbMarca;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label Licencia;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

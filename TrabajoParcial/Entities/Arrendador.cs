@@ -19,6 +19,7 @@ namespace TrabajoParcial.Entities
             Telefono = persona.Telefono;
             Correo = persona.Correo;
             Contraseña = persona.Contraseña;
+            TipoUsuario = persona.TipoUsuario;
             Espacios = new List<Espacio>();
         }
         public List<Espacio> Espacios { get; set; }

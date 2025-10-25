@@ -70,9 +70,18 @@ namespace TrabajoParcial
                 TipoUsuario = cmbtipoususario.Text,
                 Saldo = 0 
             };
-
-            bool registrado = usuarioService.Registrar(usuario);
-
+            bool registrado = false;
+            switch (usuario.TipoUsuario)
+            {
+                case "Arrendador":
+                    Arrendador usuario1 = new Arrendador(usuario);
+                    registrado = usuarioService.Registrar(usuario1);
+                    break;
+                case "Conductor":
+                    Conductor usuario2 = new Conductor(usuario);
+                    registrado = usuarioService.Registrar(usuario2);
+                    break;
+            }
             if (registrado)
             {
                 MessageBox.Show("Usuario registrado exitosamente.",

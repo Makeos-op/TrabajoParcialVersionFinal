@@ -46,5 +46,15 @@ namespace TrabajoParcial.Servicies
         {
             return usuarioRepository.ContraseñaCorrecta(correo, contraseña);
         }
+        public static List<Arrendador> MostrarArrendadores()
+        {
+            return UsuarioRepository.MostrarArrendadores();
+        }
+
+        //MostrarConductores
+        public static List<Conductor> MostrarConductores()
+        {
+            return UsuarioRepository.MostrarConductores();
+        }
     }
 }

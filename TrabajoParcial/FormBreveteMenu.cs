@@ -15,9 +15,8 @@ namespace TrabajoParcial
 {
     public partial class FormBreveteMenu : Form
     {
-        UsuarioService usuarioService = new UsuarioService();
-        Usuario usuario1;
         ConductorService conductorService = new ConductorService();
+        Usuario usuario1;
         internal FormBreveteMenu(Usuario usuario)
         {
             InitializeComponent();
@@ -26,12 +25,12 @@ namespace TrabajoParcial
         }
         private void Mostrar(List<Brevete> conductores)
         {
-            dataGridView1.DataSource = null;
+            dataGridViewBrete.DataSource = null;
             if (conductores.Count() == 0)
             {
                 return;
             }
-            dataGridView1.DataSource = conductores;
+            dataGridViewBrete.DataSource = conductores;
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -42,6 +41,17 @@ namespace TrabajoParcial
         {
             FormBrevete form = new FormBrevete(usuario1);
             form.Show();
+            form.FormClosed += (s, args) =>
+            {
+                Mostrar(conductorService.MostrarBrevetes(usuario1.DNI));
+                return;
+            };
+            return;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Mostrar(conductorService.MostrarBrevetes(usuario1.DNI));
         }
     }
 }

@@ -15,7 +15,6 @@ namespace TrabajoParcial
     public partial class FormLogin : Form
     {
         private UsuarioService usuarioService = new UsuarioService();
-        private ConductorService conductorService = new ConductorService();
         public FormLogin()
         {
             InitializeComponent();
@@ -77,17 +76,22 @@ namespace TrabajoParcial
 
                     if (usuario.TipoUsuario == "Conductor")
                     {
-                        Conductor conductor = new Conductor(usuario);
-                        conductorService.Registro(conductor);
-                        FormConductor formConductor = new FormConductor(usuario,conductorService);
-                        formConductor.Show();
+                        FormConductor formConductor = new FormConductor(usuario);
+                        formConductor.Show();   
                         this.Hide(); 
                     }
                     else if (usuario.TipoUsuario == "Arrendador")
                     {
                         FormArrendador formArrendador = new FormArrendador(usuario);
                         formArrendador.Show();
-                        this.Hide(); 
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tipo de usuario no válido.",
+                                        "Error",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                     }
                 }
             }

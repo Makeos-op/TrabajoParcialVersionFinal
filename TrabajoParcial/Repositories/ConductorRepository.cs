@@ -9,7 +9,7 @@ namespace TrabajoParcial.Repositories
 {
     internal class ConductorRepository
     {
-        private List<Conductor> conductores = UsuarioRepository.MostrarConductores();
+        private List<Conductor> conductores = new List<Conductor>();
         //Usuarios Conductores como lista (Tipo conductor == objeto conductor)
         public List<Conductor> MostrarConductores()
         {
