@@ -7,14 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrabajoParcial.Entities;
+using TrabajoParcial.Servicies;
 
 namespace TrabajoParcial
 {
     public partial class FormBrevete : Form
     {
-        public FormBrevete()
+        UsuarioService usuarioService = new UsuarioService();
+        ConductorService conductorService = new ConductorService();
+        BreveteService breveteService = new BreveteService();
+        Usuario usuario1;
+        internal FormBrevete(Usuario usuario)
         {
             InitializeComponent();
+            usuario1 = usuario;
         }
 
         private void btnregistrarbrevete_Click(object sender, EventArgs e)
@@ -22,8 +29,8 @@ namespace TrabajoParcial
             // --- Obtener valores de los TextBox ---
             string idText = txtidbrevete.Text.Trim();
             string categoria = txtcategoriabrevete.Text.Trim();
-            string fechaEmisionText = txtcategoriabrevete.Text.Trim();
-            string fechaCaducidadText = txtfechacaducidad.Text.Trim();
+            string fechaEmisionText = dateTimePicker1.Text.Trim();
+            string fechaCaducidadText = dateTimePicker2.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(idText) ||
                 string.IsNullOrWhiteSpace(categoria) ||
@@ -85,12 +92,28 @@ namespace TrabajoParcial
                                 MessageBoxIcon.Warning);
                 return;
             }
-
-            MessageBox.Show("Brevet registrado correctamente ",
+            Brevete brevete= new Brevete();
+            {
+                brevete.Id = id;
+                brevete.Categoria = categoria;
+                brevete.FechaCaducidad = fechaCaducidad;
+                brevete.FechaEmisional = fechaEmision;
+            }
+            if (breveteService.Registro(brevete))
+            {
+                MessageBox.Show("Brevet registrado correctamente ",
                             "Registro exitoso",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+                this.Close();
+                return;
+            }
+            MessageBox.Show("El brevete ya ha sido registrado.",
+                                "Duplicado encontrado",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
 
+            this.Close();
         }
     }
 }

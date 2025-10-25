@@ -77,15 +77,6 @@ namespace TrabajoParcial
                 return;
             }
 
-            if (area <= 0)
-            {
-                MessageBox.Show("El área debe ser mayor a 0.",
-                                "Valor inválido",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
-
             MessageBox.Show("Espacio registrado correctamente",
                             "Registro exitoso",
                             MessageBoxButtons.OK,

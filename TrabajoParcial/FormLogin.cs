@@ -76,13 +76,13 @@ namespace TrabajoParcial
 
                     if (usuario.TipoUsuario == "Conductor")
                     {
-                        FormConductor formConductor = new FormConductor();
+                        FormConductor formConductor = new FormConductor(usuario);
                         formConductor.Show();
                         this.Hide(); 
                     }
                     else if (usuario.TipoUsuario == "Arrendador")
                     {
-                        FormArrendador formArrendador = new FormArrendador();
+                        FormArrendador formArrendador = new FormArrendador(usuario);
                         formArrendador.Show();
                         this.Hide(); 
                     }

@@ -36,5 +36,12 @@ namespace TrabajoParcial.Repositories
         {
             return Buscar(id).Espacios;
         }
+        public List<Reserva> BuscarReservasArrendador(int id)
+        {
+            
+            var ReservasRepo=new ReservaRepository();
+            return ReservasRepo.Mostrar().Where(r => r.idUbicacion.Equals(MostrarEspacios(id))).ToList();
+        }
+
     }
 }

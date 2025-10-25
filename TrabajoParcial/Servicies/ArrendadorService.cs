@@ -32,5 +32,9 @@ namespace TrabajoParcial.Servicies
         {
             return arrendadorRepository.Buscar(DNI);
         }
+        public List<Reserva> BuscarReservasArrendador(int id)
+        {
+            return arrendadorRepository.BuscarReservasArrendador(id);
+        }
     }
 }

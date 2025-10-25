@@ -7,14 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrabajoParcial.Entities;
+using TrabajoParcial.Servicies;
 
 namespace TrabajoParcial
 {
     public partial class FormArrendador : Form
     {
-        public FormArrendador()
+        ArrendadorService arrendadorService= new ArrendadorService();
+
+        private Usuario usuario_registro = new Usuario();
+        internal FormArrendador(Usuario usuario)
         {
             InitializeComponent();
+            usuario_registro = usuario;
+            MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario.DNI));
+        }
+        private void MostrarAlmacenes(List<Espacio> espacio)
+        {
+            dataGridView1.DataSource = null;
+            if (espacio.Count() == 0)
+            {
+                return;
+            }
+            dataGridView1.DataSource = espacio;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormEspacio form = new FormEspacio(usuario_registro);
+            form.Show();
+            form.FormClosed += (s, args) =>
+            {
+                MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario_registro.DNI));
+                return;
+            };
+            return;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormReservaArrendador form = new FormReservaArrendador(usuario_registro);
+            form.Show();
         }
     }
 }

@@ -34,6 +34,10 @@ namespace TrabajoParcial.Repositories
             //Problema: reserva.idUbicacion o dniArrendador
             UsuarioRepo.AgregarMonto(reserva.Monto_horas, EspacioRepo.Buscar(reserva.idUbicacion).DniArrendador);
         }
+        public List<Reserva> Mostrar()
+        {
+            return ReservasActivas;
+        }
 
 
     }
