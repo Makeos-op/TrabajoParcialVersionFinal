@@ -27,5 +27,9 @@ namespace TrabajoParcial.Repositories
         {
             return espaciosRegistrados.Find(e => e.Id.Equals(id));
         }
+        public List<Espacio> Mostrar()
+        {
+            return espaciosRegistrados;
+        }
     }
 }

@@ -20,9 +20,9 @@ namespace TrabajoParcial.Servicies
         {
             return conductorRepository.Buscar(DNI);
         }
-        public bool Registro(Conductor conductor, Brevete brevete)
+        public bool Registro(Conductor conductor)
         {
-            return conductorRepository.Registro(conductor, brevete);
+            return conductorRepository.Registro(conductor);
         }
         public List<Vehiculo> MostrarVehiculos(int id)
         {
@@ -35,6 +35,14 @@ namespace TrabajoParcial.Servicies
         public Conductor Buscar(int DNI)
         {
            return conductorRepository.Buscar(DNI);
+        }
+        public List<Reserva> MostrarReservas(int id)
+        {
+            return conductorRepository.MostrarReservas(id);
+        }
+        public bool RegistroBrevete(int DNI, Brevete brevete)
+        {
+            return conductorRepository.RegistroBrevete(DNI, brevete);
         }
     }
 }

@@ -29,5 +29,10 @@ namespace TrabajoParcial.Repositories
         {
             return vehiculosRegistrados.Find(v => v.Matricula.Equals(Matricula));
         }
+        public Vehiculo BuscarDueño(int DNI)
+        {
+            return vehiculosRegistrados.Find(v => v.dniConductor.Equals(DNI));
+        }
+
     }
 }

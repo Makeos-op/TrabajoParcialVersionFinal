@@ -21,7 +21,8 @@ namespace TrabajoParcial
         {
             InitializeComponent();
             usuario_registro = usuario;
-            MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario.DNI));
+            var arrendador = arrendadorService.Buscar(usuario.DNI);
+            MostrarAlmacenes(arrendador.Espacios);
         }
         private void MostrarAlmacenes(List<Espacio> espacio)
         {

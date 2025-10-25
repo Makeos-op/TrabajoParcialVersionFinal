@@ -20,9 +20,9 @@ namespace TrabajoParcial.Servicies
         {
             return arrendadorRepository.Buscar(DNI);
         }
-        public bool Registro(Arrendador arrendador, Espacio espacio)
+        public bool Registro(Arrendador arrendador)
         {
-            return arrendadorRepository.Registro(arrendador, espacio);  
+            return arrendadorRepository.Registro(arrendador);  
         }
         public List<Espacio> MostrarEspacios(int id)
         {

@@ -21,5 +21,9 @@ namespace TrabajoParcial.Servicies
         {
             return espacioRepository.Buscar(id);
         }
+        public List<Espacio> Mostrar()
+        {
+            return espacioRepository.Mostrar();
+        }
     }
 }

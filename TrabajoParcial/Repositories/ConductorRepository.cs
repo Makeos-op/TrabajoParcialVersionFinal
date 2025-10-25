@@ -20,17 +20,24 @@ namespace TrabajoParcial.Repositories
         {
             return MostrarConductores().Find(i => i.DNI.Equals(DNI));
         }
-        public bool Registro(Conductor conductor, Brevete brevete)
+        public bool Registro(Conductor conductor)
         {
-            var breveteRepo = new BreveteRepository(); //Llamar Repo Brevetes
-            conductor.TipoUsuario = "Conductor";
-            bool BreveteRegistro = breveteRepo.Registro(brevete);
-            if (!BreveteRegistro)
+            var RepoUsuario = new UsuarioRepository();
+            if (!RepoUsuario.RegistrarUsuario(conductor))
             {
                 return false;
             }
-            conductor.brevetes.Add(brevete);
-            new UsuarioRepository().RegistrarUsuario(conductor);
+            conductores.Add(conductor);
+            return true;
+        }
+        public bool RegistroBrevete(int DNI, Brevete brevete)
+        {
+            var RepoBrevete = new BreveteRepository();
+            if (!RepoBrevete.Registro(brevete))
+            {
+                return false;
+            }
+            Buscar(DNI).brevetes.Add(brevete);
             return true;
         }
         public List<Vehiculo> MostrarVehiculos(int id)
@@ -41,7 +48,10 @@ namespace TrabajoParcial.Repositories
         {
             return Buscar(id).brevetes;
         }
-        //Reportes
-
+        public List<Reserva> MostrarReservas(int id)
+        {
+            var ReservaRepo = new ReservaRepository();
+            return ReservaRepo.Mostrar().Where(r=>r.matricula.Equals(MostrarVehiculos(id))).ToList();
+        }
     }
 }

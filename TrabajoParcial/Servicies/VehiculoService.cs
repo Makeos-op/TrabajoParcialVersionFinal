@@ -20,5 +20,9 @@ namespace TrabajoParcial.Servicies
         {
             return vehiculoRepository.Buscar(Matricula);
         }
+        public Vehiculo BuscarDueño(int DNI)
+        {
+            return vehiculoRepository.BuscarDueño(DNI);
+        }
     }
 }
