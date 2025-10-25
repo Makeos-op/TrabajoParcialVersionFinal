@@ -14,7 +14,7 @@ namespace TrabajoParcial
 {
     public partial class FormBrevete : Form
     {
-        private BreveteService breveteService = new BreveteService();
+        private ConductorService conductorService = new ConductorService();
         Usuario usuario1;
         internal FormBrevete(Usuario usuario)
         {
@@ -28,6 +28,7 @@ namespace TrabajoParcial
             string categoria = txtcategoriabrevete.Text.Trim();
             string fechaEmisionText = dateTimePicker1.Text.Trim();
             string fechaCaducidadText = dateTimePicker2.Text.Trim();
+            int DNI = usuario1.DNI;
 
             if (string.IsNullOrWhiteSpace(idText) ||
                 string.IsNullOrWhiteSpace(categoria) ||
@@ -95,8 +96,9 @@ namespace TrabajoParcial
                 brevete.Categoria = categoria;
                 brevete.FechaCaducidad = fechaCaducidad;
                 brevete.FechaEmisional = fechaEmision;
+                brevete.dniConductor = DNI;
             }
-            bool registro = breveteService.Registro(brevete);
+            bool registro = conductorService.RegistroBrevete(brevete.dniConductor,brevete);
             if (registro)
             {
                 MessageBox.Show("Brevet registrado correctamente ",

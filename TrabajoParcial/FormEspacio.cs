@@ -39,6 +39,7 @@ namespace TrabajoParcial
             double Tarifa;
             string Ubicacion;
             string Area;
+            int dni = usuario_registro.DNI;
 
             try
             {
@@ -54,13 +55,17 @@ namespace TrabajoParcial
                     espacio.Ubicacion = Ubicacion;
                     espacio.DniArrendador = usuario_registro.DNI;
                 }
-                espacioService.Registro(espacio.DniArrendador, espacio);
-                MessageBox.Show("El espacio ha sido registrado.",
+                bool Registro = arrendadorService.RegistrarEspacios(espacio.DniArrendador, espacio);
+                if (Registro)
+                {
+                    MessageBox.Show("El espacio ha sido registrado.",
                                 "Registro",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
-                MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario_registro.DNI));
-                return;
+                    MostrarAlmacenes(arrendadorService.MostrarEspacios(usuario_registro.DNI));
+                    return;
+                }
+
             }
             catch(FormatException)
             {

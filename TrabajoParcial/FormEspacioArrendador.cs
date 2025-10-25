@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrabajoParcial.Entities;
+using TrabajoParcial.Repositories;
 using static System.Windows.Forms.MonthCalendar;
 
 namespace TrabajoParcial
 {
     public partial class FormEspacioArrendador : Form
     {
-        public FormEspacioArrendador()
+        ArrendadorRepository arrendadorRepository = new ArrendadorRepository();
+        Usuario usuario1;
+        internal FormEspacioArrendador(Usuario usuario)
         {
             InitializeComponent();
+            usuario1 = usuario;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,7 +44,6 @@ namespace TrabajoParcial
 
             int id;
             double tarifa;
-            double area;
 
             if (!int.TryParse(idText, out id))
             {
@@ -59,15 +63,6 @@ namespace TrabajoParcial
                 return;
             }
 
-            if (!double.TryParse(areaText, out area))
-            {
-                MessageBox.Show("El área debe ser un número válido.",
-                                "Error de formato",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
-
             if (tarifa <= 0)
             {
                 MessageBox.Show("La tarifa por hora debe ser mayor a 0.",
@@ -76,11 +71,28 @@ namespace TrabajoParcial
                                 MessageBoxIcon.Warning);
                 return;
             }
+            Espacio espacio= new Espacio();
+            {
+                espacio.DniArrendador = id;
+                espacio.TarifaHora = tarifa;
+                espacio.Area = areaText;
+                espacio.Ubicacion = ubicacion;
+                espacio.Id = id;
+            }
+            bool registrar = arrendadorRepository.RegistrarEspacios(espacio.Id,espacio);
+            if (registrar)
+            {
+                MessageBox.Show("Espacio registrado correctamente",
+                "Registro exitoso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+                return;
+            }
+            MessageBox.Show("Espacio ya ha sido registrado",
+                "Duplicado",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
 
-            MessageBox.Show("Espacio registrado correctamente",
-                            "Registro exitoso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
         }
     }
 }

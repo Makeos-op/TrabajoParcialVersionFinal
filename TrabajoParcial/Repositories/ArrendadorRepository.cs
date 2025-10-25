@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TrabajoParcial.Entities;
@@ -32,6 +33,16 @@ namespace TrabajoParcial.Repositories
         public List<Espacio> MostrarEspacios(int id)
         {
             return Buscar(id).Espacios;
+        }
+        public bool RegistrarEspacios(int id,Espacio espacio)
+        {
+            var RepoBrevete = new EspacioRepository();
+            if (!RepoBrevete.Registro(espacio))
+            {
+                return false;
+            }
+            Buscar(id).Espacios.Add(espacio);
+            return true;
         }
         public List<Reserva> BuscarReservasArrendador(int id)
         {

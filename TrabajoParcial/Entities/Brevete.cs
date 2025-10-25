@@ -9,6 +9,7 @@ namespace TrabajoParcial.Entities
     internal class Brevete
     {
         public int Id { get; set; }
+        public int dniConductor { get; set; }
         public string Categoria { get; set; }
         public DateTime FechaEmisional { get; set; }
         public DateTime FechaCaducidad { get; set; }

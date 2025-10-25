@@ -51,5 +51,15 @@ namespace TrabajoParcial
             FormReservaArrendador form = new FormReservaArrendador(usuario_registro);
             form.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form loginForm = Application.OpenForms.OfType<FormLogin>().FirstOrDefault();
+            if (loginForm != null)
+            {
+                loginForm.Show();
+            }
+            this.Close();
+        }
     }
 }

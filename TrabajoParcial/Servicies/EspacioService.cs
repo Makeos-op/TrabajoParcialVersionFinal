@@ -12,9 +12,9 @@ namespace TrabajoParcial.Servicies
     {
         private EspacioRepository espacioRepository = new EspacioRepository();
 
-        public bool Registro(int dni, Espacio espacio)
+        public bool Registro(Espacio espacio)
         {
-            return espacioRepository.Registro(dni,espacio);
+            return espacioRepository.Registro(espacio);
         }
 
         public Espacio Buscar(int id)

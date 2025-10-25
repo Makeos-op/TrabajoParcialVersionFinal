@@ -36,5 +36,9 @@ namespace TrabajoParcial.Servicies
         {
             return arrendadorRepository.BuscarReservasArrendador(id);
         }
+        public bool RegistrarEspacios(int id, Espacio espacio)
+        {
+            return arrendadorRepository.RegistrarEspacios(id, espacio);
+        }
     }
 }
